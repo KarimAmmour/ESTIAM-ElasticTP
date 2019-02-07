@@ -1,0 +1,15 @@
+{
+"size" : 0,
+"query": {
+        "bool": {
+            "must": [
+              {"match" : { "borough":  "Brooklyn" }}
+            ]
+         }
+},
+"aggs" : {
+        	"cuisines" : {
+        	        "terms" : { "field" : "cuisine", "size" : 10000}
+        		     }
+    		     }
+}

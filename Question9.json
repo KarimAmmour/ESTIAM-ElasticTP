@@ -1,0 +1,32 @@
+{
+ "size" : 0,
+ "query": {
+        "bool": {
+            "must": [
+                { "match": { "borough": "Manhattan" }}  
+            ]
+        }
+    },
+ "aggs" : {
+    "cuisines" : {
+       "terms" : { "field" : "cuisine", "size" : 10000}
+    ,
+ 
+ "aggs" : {
+        "restaurantsMI" : {
+            "terms" : {
+              "field" : "name",
+              "order": {
+                "avg_score" : "desc" 
+              },
+              "size": 1
+            },
+            "aggs": {
+                "avg_score": {
+                    "avg": {"field": "grades.score"} 
+                }
+            }
+        }
+    }
+  }
+ }

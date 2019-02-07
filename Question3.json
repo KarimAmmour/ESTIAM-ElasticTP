@@ -1,0 +1,11 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                { "match": { "cuisine": "Italian" }}, 
+                { "match": { "borough": "Manhattan" }}  
+            ]
+        }
+    },
+    "_source": ["cuisine", "borough"]
+}

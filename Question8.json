@@ -1,0 +1,27 @@
+{
+ "size" : 0,
+"query": {
+        "bool": {
+            "must": [
+                { "match": { "cuisine": "Italian" }}, 
+                { "match": { "borough": "Manhattan" }}  
+            ]
+        }
+    },
+ "aggs" : {
+        "restaurantsMI" : {
+            "terms" : {
+              "field" : "name",
+              "order": {
+                "avg_score" : "desc" 
+              },
+              "size": 1
+            },
+            "aggs": {
+                "avg_score": {
+                    "avg": {"field": "grades.score"} 
+                }
+            }
+        }
+    }
+}
